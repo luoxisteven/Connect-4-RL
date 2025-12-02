@@ -3,10 +3,9 @@
 ## Run
 ``` bash
 # Frontend
-cd angular-front
-ng serve 
-# or
-npm start
+cd ts-front
+npm run dev
+
 
 # Backend
 cd django_back
