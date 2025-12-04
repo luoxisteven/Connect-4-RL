@@ -15,13 +15,14 @@ class Connect4:
         return True
 
     def take_action(self, action):
-        if not self.is_legat_action(action):
+        if not self.is_legal_action(action):
             return False
         else:
-            for i in range(5,0,-1):
+            for i in range(5,-1,-1):
                 if self.board[i][action[1]] == "_":
-                    self.board[i][action[1]] == action[0]
-                    return True
+                    self.board[i][action[1]] = action[0]
+                    break
+            return True
 
     def check_winner(self):
         return
