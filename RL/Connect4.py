@@ -19,39 +19,46 @@ class Connect4:
         action_col = action[1]
         if action_player != self.current_player:
             return False
-        if self.board[action_col][self.height-1] != "_" \
+        if state[action_col][self.height-1] != "_" \
             or (not isinstance(action_col, int)) \
             or (action_col < 0) \
             or (action_col > self.width-1):
             return False
         return True
 
-    def take_action(self, action):
-        if not self.is_legal_action(action):
-            return False
+    def take_action(self, action, state=None):
+        if state is None:
+            state = self.board
+        else:
+            self.board = state
+        if not self.is_legal_action(action, state):
+            return None
         else:
             for i in range(self.height):
-                if self.board[action[1]][i] == "_":
-                    self.board[action[1]][i] = action[0]
+                if state[action[1]][i] == "_":
+                    state[action[1]][i] = action[0]
+                    self.board = state
                     self.switch_player()
                     break
-            return True
+            return self.board
 
     def take_search_action(self, action, state=None):
         if state is None:
             state = self.board
         if not self.is_legal_action(action, state):
-            return False
+            return None
         else:
             for i in range(self.height):
-                if self.board[action[1]][i] == "_":
-                    self.board[action[1]][i] = action[0]
+                if state[action[1]][i] == "_":
+                    state[action[1]][i] = action[0]
                     break
-            return True
+            return state
 
     def check_winner(self, board=None):
         if board is None:
             board = self.board
+        else:
+            self.board = board
         # Vertical check
         for x in range(self.width):
             for y in range(self.height - 3):
@@ -100,10 +107,11 @@ class Connect4:
     
     def reset_game(self):
         self.board = [["_" for _ in range(self.height)] for _ in range(self.width)]
-        return
+        return self.board
     
     def switch_player(self):
         self.current_player = "o" if self.current_player == "x" else "x"
+        return self.current_player
     
     def print_board(self):
         for y in reversed(range(self.height)):
@@ -137,3 +145,4 @@ class Connect4:
         if self.is_goal_state(next_state):
             if self.winner == self.current_player:
                 return 1
+        return 0
