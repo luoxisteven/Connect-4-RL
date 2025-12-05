@@ -117,6 +117,27 @@ class Connect4:
                 return False
         return True
 
+    def get_width_symmetrical_board(self, board=None):
+        if board is None:
+            board = self.board
+        sym_board = copy.deepcopy(board)
+        for x in range(self.width//2):
+            for y in range(self.height):
+                sym_board[x][y], sym_board[self.width-1-x][y] = sym_board[self.width-1-x][y], sym_board[x][y]
+        return sym_board
+
+    def get_player_symmmetrical_board(self, board=None):
+        if board is None:
+            board = self.board
+        sym_board = copy.deepcopy(board)
+        for x in range(self.width):
+            for y in range(self.height):
+                if sym_board[x][y] == "o":
+                    sym_board[x][y] = "x"
+                elif sym_board[x][y] == "x":
+                    sym_board[x][y] = "o" 
+        return sym_board
+
     # RL-related methods
     def get_current_state(self):
         return self.board
