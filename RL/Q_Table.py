@@ -9,9 +9,15 @@ class QTable:
 
     def get_q_value(self, state, action):
         return self.q_table.get((state, action), 0)
+
+    def get_q_values(self, state):
+        return self.q_table.get(state, 0)
     
     def set_q_table(self, q_table):
         self.q_table = copy.deepcopy(q_table)
     
     def update_q_table(self, state, action, value):
         self.q_table[(state, action)] = value
+    
+    def update_q_table(self, state, value):
+        self.q_table[state] = value
