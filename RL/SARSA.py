@@ -7,7 +7,7 @@ import Q_Table as Q_Table
 class SARSA:
     def __init__(self):
         self.game = c4.Connect4()
-        self.discount_factor = 0.9
+        self.discount_factor = 0.9 # Discount for the future
 
         self.q_table_path = "metadata/q_table.pkl"
         self.q_table = self.load_q_table()
