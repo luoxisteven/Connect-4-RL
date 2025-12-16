@@ -24,3 +24,6 @@ class SARSA:
     def save_q_table(self):
         with open(self.q_table_path, "wb") as f:
             pickle.dump(self.q_table, f)
+    
+    def SARSA(self):
+        pass
