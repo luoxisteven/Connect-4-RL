@@ -1,4 +1,5 @@
 import copy
+import random
 
 class Connect4:
     def __init__(self, board):
@@ -7,7 +8,7 @@ class Connect4:
         # Start from (0,0) the bottom left similar to regular (x,y) coordinates
         # a[x][y] = Location(x,y) start from the bottom left
         self.board = board or [["_" for _ in range(self.height)] for _ in range(self.width)]
-        self.current_player = "x"
+        self.current_player = "o"
         self.players = ["x", "o"]
         self.game_over = False
         self.winner = None
@@ -99,6 +100,7 @@ class Connect4:
         return self.current_player
 
     def print_board(self):
+        print(" ".join(str(i) for i in range(self.width)))
         for y in reversed(range(self.height)):
             row = []
             for x in range(self.width):
@@ -183,3 +185,17 @@ class Connect4:
             return 0
         else:
             return -1
+    
+    def take_random_action(self):
+        legal_actions = []
+        for i in range(self.width):
+            action = (self.current_player, i)
+            if self.is_legal_action(action):
+                legal_actions += [action]
+        if len(legal_actions) == 0:
+            return None
+        if self.current_player == "o":
+            self.current_player = "x"
+        else:
+            self.current_player = "o"
+        return random.choice(legal_actions)

@@ -1,0 +1,2 @@
+class MAB:
+    pass
