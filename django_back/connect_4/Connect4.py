@@ -45,8 +45,8 @@ class Connect4:
                 if self.board[action[1]][i] == "_":
                     self.board[action[1]][i] = action[0]
                     self.actions.append(action)
-                    self.switch_player()
                     break
+            self.switch_player()
             return self.board
 
     def check_winner(self, board=None):
@@ -194,8 +194,6 @@ class Connect4:
                 legal_actions += [action]
         if len(legal_actions) == 0:
             return None
-        if self.current_player == "o":
-            self.current_player = "x"
-        else:
-            self.current_player = "o"
-        return random.choice(legal_actions)
+        taken_action = random.choice(legal_actions)
+        self.take_action(taken_action)
+        return 

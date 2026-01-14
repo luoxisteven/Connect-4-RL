@@ -7,38 +7,50 @@ class Game:
     
     def play(self):
         self.print_welcome_message()
-        input = ""
-        while input != "exit":
+        user_input = ""
+        while user_input != "exit":
             self.game.reset_game()
-            input = input("Type 'o' to play first and Type 'x' to play next: ")
-            if input == 'o' or input == 'O':
+            user_input = input("Type 'o' to play first and Type 'x' to play next: ")
+            if user_input == 'o' or user_input == 'O':
                 print("You choose start first. You will be player 'o'.")
                 self.player = 'o'
                 self.game.print_board()
-            elif input == 'x' or input == 'X':
+                user_input = self.game_loop()
+            elif user_input == 'x' or user_input == 'X':
                 print("You choose start next. You will be player 'x'.")
                 self.player = 'x'
                 self.game.take_random_action()
                 self.game.print_board()
+                user_input = self.game_loop()
     
     def game_loop(self):
-        input = ""
-        while input != "exit":
-            input = input("Please take an action: ")
-            if input.isdigit():
-                action = (self.player, int(input))
+        user_input = ""
+        while user_input != "exit":
+            user_input = input("Please take an action: ")
+            if user_input.isdigit():
+                action = (self.player, int(user_input))
                 if self.game.is_legal_action(action):
                     self.game.take_action(action)
-                    if self.game.check_winner() == self.player:
-                        print("You win!!")
-                    else: 
-                        self.game.take_random_action()
-                        if self.game.check_winner() == self.player:
-                            print("You lost!!")
+                    if self.check_winner() != None:
+                        break
+                    self.game.take_random_action()
+                    self.game.print_board()
+                    if self.check_winner() != None:
+                        break
                 else:
                     print("This is not an illegal action, please choose the action again.")
-
-
+        return user_input
+    
+    def check_winner(self):
+        if self.game.check_winner() == self.player:
+            self.game.print_board()
+            print("You win!!")
+            return self.player
+        elif self.game.check_winner() == None:
+            return None
+        else:
+            print("You lost!!")
+            return "o" if self.player == "o" else "x"
 
     def print_welcome_message(self):
         message = """
