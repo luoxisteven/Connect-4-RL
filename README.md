@@ -2,10 +2,12 @@
 
 ## Run
 ``` bash
+# Play Game
+python Connect-4/Game.py
+
 # Frontend
 cd ts-front
 npm run dev
-
 
 # Backend
 cd django_back

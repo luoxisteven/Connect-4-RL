@@ -21,10 +21,10 @@ class Connect4:
         if board is None:
             board = self.board
         action_col = action[1]
-        if board[action_col][self.height-1] != "_" \
-            or (not isinstance(action_col, int)) \
+        if (not isinstance(action_col, int))\
             or (action_col < 0) \
-            or (action_col > self.width-1):
+            or (action_col > self.width-1)\
+            or board[action_col][self.height-1] != "_":
             return False
         return True
     

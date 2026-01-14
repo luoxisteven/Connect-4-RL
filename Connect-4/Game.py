@@ -1,3 +1,4 @@
+import os
 from Connect4 import *
 
 class Game:
@@ -26,7 +27,7 @@ class Game:
     def game_loop(self):
         user_input = ""
         while user_input != "exit":
-            user_input = input("Please take an action: ")
+            user_input = input("You are player '{}'.\nPlease take an action: ".format(self.player))
             if user_input.isdigit():
                 action = (self.player, int(user_input))
                 if self.game.is_legal_action(action):
@@ -54,32 +55,32 @@ class Game:
 
     def print_welcome_message(self):
         message = """
-        ============================================================
-                        Welcome to CONNECT 4!
-        ============================================================
+============================================================
+                Welcome to CONNECT 4!
+============================================================
 
-        GAME RULES:
-        ------------------------------------------------------------
-        • Drop pieces into columns (0-6) to stack them
-        • Get 4 of your pieces in a row to win!
-        • You can win horizontally, vertically, or diagonally
-        • First player to get 4 in a row wins the game
+GAME RULES:
+------------------------------------------------------------
+• Drop pieces into columns (0-6) to stack them
+• Get 4 of your pieces in a row to win!
+• You can win horizontally, vertically, or diagonally
+• First player to get 4 in a row wins the game
 
-        PLAYERS:
-        ------------------------------------------------------------
-        • O - Plays first
-        • X - Plays second
+PLAYERS:
+------------------------------------------------------------
+• O - Plays first
+• X - Plays second
 
-        HOW TO PLAY:
-        ------------------------------------------------------------
-        • Enter a column number (0-6) to drop your piece
-        • Pieces fall to the lowest available position
-        • Watch out - you can block your opponent too!
-        • You can enter "exit" to exit the game at any time
+HOW TO PLAY:
+------------------------------------------------------------
+• Enter a column number (0-6) to drop your piece
+• Pieces fall to the lowest available position
+• Watch out - you can block your opponent too!
+• You can enter "exit" to exit the game at any time
 
-        ============================================================
-                        Good luck! Let's begin...
-        ============================================================
+============================================================
+                Good luck! Let's begin...
+============================================================
         """
         print(message)
 
