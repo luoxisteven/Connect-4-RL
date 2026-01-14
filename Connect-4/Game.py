@@ -15,17 +15,17 @@ class Game:
             if user_input == 'o' or user_input == 'O':
                 print("You choose start first. You will be player 'o'.")
                 self.player = 'o'
-                self.game.print_board()
                 user_input = self.game_loop()
             elif user_input == 'x' or user_input == 'X':
                 print("You choose start next. You will be player 'x'.")
                 self.player = 'x'
                 self.game.take_random_action()
-                self.game.print_board()
                 user_input = self.game_loop()
     
     def game_loop(self):
         user_input = ""
+        self.clear_screen()
+        self.game.print_board()
         while user_input != "exit":
             user_input = input("You are player '{}'.\nPlease take an action: ".format(self.player))
             if user_input.isdigit():
@@ -35,15 +35,19 @@ class Game:
                     if self.check_winner() != None:
                         break
                     self.game.take_random_action()
+                    self.clear_screen()
                     self.game.print_board()
                     if self.check_winner() != None:
                         break
                 else:
                     print("This is not an illegal action, please choose the action again.")
+            else:
+                print("This is not an illegal action, please choose the action again.")
         return user_input
     
     def check_winner(self):
         if self.game.check_winner() == self.player:
+            self.clear_screen()
             self.game.print_board()
             print("You win!!")
             return self.player
@@ -83,6 +87,9 @@ HOW TO PLAY:
 ============================================================
         """
         print(message)
+    
+    def clear_screen(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
 
 if __name__ == "__main__":
     game = Game()

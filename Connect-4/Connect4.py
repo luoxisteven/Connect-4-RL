@@ -92,6 +92,7 @@ class Connect4:
         return None
 
     def reset_game(self):
+        self.current_player = "o"
         self.board = [["_" for _ in range(self.height)] for _ in range(self.width)]
         return self.board
 
