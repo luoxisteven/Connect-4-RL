@@ -11,7 +11,7 @@ class Game:
         user_input = ""
         while user_input != "exit":
             self.game.reset_game()
-            user_input = input("Type 'o' to play first and Type 'x' to play next: ")
+            user_input = input("Type 'o' to play first and Type 'x' to play second: ")
             if user_input == 'o' or user_input == 'O':
                 print("You choose start first. You will be player 'o'.")
                 self.player = 'o'
@@ -41,6 +41,8 @@ class Game:
                         break
                 else:
                     print("This is not an illegal action, please choose the action again.")
+            elif user_input == "exit":
+                print("Exiting the game")
             else:
                 print("This is not an illegal action, please choose the action again.")
         return user_input

@@ -1,4 +1,5 @@
-from Connect4 import *
+# from Connect_4.Game.Connect4 import Connect4
+from ..Game.Connect4 import Connect4
 
 def create_empty_board():
     return [["_" for _ in range(6)] for _ in range(7)]

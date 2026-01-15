@@ -3,7 +3,10 @@
 ## Run
 ``` bash
 # Play Game
-python Connect-4/Game.py
+python Connect_4/Game/Play.py
+# Runs as a module
+python -m Connect_4.test.test-winner-check
+python -m Connect_4.test_test
 
 # Frontend
 cd ts-front
