@@ -4,7 +4,8 @@ import Game from './Game'
 function App() {
 
   return (
-    <Game></Game>
+    // <Game></Game>
+    <Game/>
   )
 }
 

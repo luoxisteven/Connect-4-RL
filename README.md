@@ -16,3 +16,8 @@ npm run dev
 cd django_back
 python manage.py runserver 8888
 ```
+
+## Creation
+``` bash
+npm create vite@latest
+```
